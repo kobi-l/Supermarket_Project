@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SupemarketNew
+namespace SupermarketProject
 {
     public abstract class ProductAbstract : IProduct
     {
