@@ -13,6 +13,7 @@ namespace SupemarketNew
             // New Sale
             var shoppingCart = new ShoppingCart("Miss Loyalty");
 
+            // adding products
             var product1 = new Product1(3);
             shoppingCart.AddProduct(product1);
 
@@ -22,8 +23,10 @@ namespace SupemarketNew
             var product3 = new Product3(4);
             shoppingCart.AddProduct(product3);
 
+            // product quantity update
             shoppingCart.IncreaseProductQuantity(product3.ProductName, -3);
 
+            // generating receipt
             var receipt = new GenerateReceipt(shoppingCart);
             receipt.GetReceiptPrintout();
         }
