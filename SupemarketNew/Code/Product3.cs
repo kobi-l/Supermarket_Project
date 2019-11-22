@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SupemarketNew
+{
+    public class Product3 : ProductAbstract
+    {
+        public Product3(int productQuantity = 1)
+        {
+            ProductName = "Watermelon";
+            ProductPrice = 3.99M;
+            ProductQuantity = productQuantity;
+        }
+
+        public override decimal GetProductTax() => .02M;
+
+    }
+}
