@@ -15,7 +15,7 @@ namespace SupermarketProject
             ProductQuantity = productQuantity;
         }
 
-        // Expression-Bodied way:
+        // Tax override uisng the expression-bodied way:
         public override decimal GetProductTax() => .05M;
     }
 }

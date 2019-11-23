@@ -15,7 +15,7 @@ namespace SupermarketProject
             ProductQuantity = productQuantity;
         }
 
+        // Tax override
         public override decimal GetProductTax() => .02M;
-
     }
 }
