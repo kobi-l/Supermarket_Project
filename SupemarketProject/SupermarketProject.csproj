@@ -62,7 +62,11 @@
     <Compile Include="Code\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Code\ShoppingCart.cs" />
-    <Compile Include="Tests\ShoppingCartTests.cs" />
+    <Compile Include="Tests\InvoiceTotal_Tests.cs" />
+    <Compile Include="Tests\ProductPriceAndSubtotal_Tests.cs" />
+    <Compile Include="Tests\ProductQuantity_Tests.cs" />
+    <Compile Include="Tests\ProductTax_Tests.cs" />
+    <Compile Include="Tests\ShoppingCart_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Code\App.config" />

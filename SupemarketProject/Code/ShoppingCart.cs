@@ -32,6 +32,12 @@ namespace SupermarketProject
             if (Products.TryGetValue(productName, out IProduct existingProduct))
             {
                 existingProduct.ProductQuantity += quantity;
+
+                if (existingProduct.ProductQuantity <= 0)
+                {
+                    existingProduct.ProductQuantity = 0;
+                    RemoveProduct(productName);
+                }
             }
         }
 

@@ -14,13 +14,13 @@ namespace SupermarketProject
             var shoppingCart = new ShoppingCart("Miss Loyalty");
 
             // adding products
-            var product1 = new Product1(3);
+            var product1 = new Product1();
             shoppingCart.AddProduct(product1);
 
-            var product2 = new Product2(2);
+            var product2 = new Product2();
             shoppingCart.AddProduct(product2);
 
-            var product3 = new Product3(4);
+            var product3 = new Product3(2);
             shoppingCart.AddProduct(product3);
 
             // product quantity update
