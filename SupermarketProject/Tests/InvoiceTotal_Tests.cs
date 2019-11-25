@@ -48,7 +48,7 @@ namespace SupemarketProject.Tests
             var shoppingCart = new ShoppingCart("Loyal");
             var product = new Product1(4);
             shoppingCart.AddProduct(product);
-            shoppingCart.IncreaseProductQuantity(product.ProductName, -2);
+            shoppingCart.ProductQuantityUpdate(product.ProductName, -2);
 
             //Act
             var expected = product.GetProductTotalPrice() + (product.ProductPrice * 2 * product.GetProductTax());

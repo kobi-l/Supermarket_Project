@@ -20,14 +20,21 @@ namespace SupermarketProject
 
         #region METHODS
 
-        public void AddProduct(ProductAbstract product) => Products.Add(product.ProductName, product);
+        public void AddProduct(IProduct product)
+        {
+            if (!Products.TryGetValue(product.ProductName, out IProduct existingProduct))
+                Products.Add(product.ProductName, product);
+
+            else if (Products.TryGetValue(product.ProductName, out IProduct invoiceProduct))
+                ProductQuantityUpdate(product.ProductName, product.ProductQuantity);
+        }
 
         public void RemoveProduct(string productName) => Products.Remove(productName);
 
 
         public void RemoveAllProducts() => Products.Clear();
 
-        public void IncreaseProductQuantity(string productName, int quantity = 1)
+        public void ProductQuantityUpdate(string productName, int quantity = 1)
         {
             if (Products.TryGetValue(productName, out IProduct existingProduct))
             {
@@ -44,7 +51,6 @@ namespace SupermarketProject
         public decimal InvoiceSubtotal() => Products.Sum(product => product.Value.GetProductTotalPrice());
 
         public decimal InvoiceTax() => Products.Sum(product => product.Value.GetProductTax() * product.Value.GetProductTotalPrice());
-
 
         public decimal InvoiceTotal() => InvoiceSubtotal() + InvoiceTax();
 

@@ -49,7 +49,7 @@ namespace SupemarketProject.Tests
             var shoppingCart = new ShoppingCart("Loyal");
             var product = new Product1();
             shoppingCart.AddProduct(product);
-            shoppingCart.IncreaseProductQuantity(product.ProductName, 3);
+            shoppingCart.ProductQuantityUpdate(product.ProductName, 3);
 
             //Act
             var expected = product.ProductPrice * 4 * 0.05m;
@@ -65,7 +65,7 @@ namespace SupemarketProject.Tests
             var shoppingCart = new ShoppingCart("Loyal");
             var product = new Product1(4);
             shoppingCart.AddProduct(product);
-            shoppingCart.IncreaseProductQuantity(product.ProductName, -2);
+            shoppingCart.ProductQuantityUpdate(product.ProductName, -2);
 
             //Act
             var expected = product.ProductPrice * 2 * 0.05m;

@@ -24,7 +24,7 @@ namespace SupermarketProject
             shoppingCart.AddProduct(product3);
 
             // product quantity update
-            shoppingCart.IncreaseProductQuantity(product3.ProductName, -3);
+            shoppingCart.ProductQuantityUpdate(product3.ProductName, -3);
 
             // generating receipt
             var receipt = new GenerateReceipt(shoppingCart);

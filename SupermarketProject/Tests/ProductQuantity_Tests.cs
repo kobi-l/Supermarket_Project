@@ -60,7 +60,7 @@ namespace SupemarketProject.Tests
             var shoppingCart = new ShoppingCart("Loyal");
             var product = new Product1();
             shoppingCart.AddProduct(product);
-            shoppingCart.IncreaseProductQuantity(product.ProductName, 2);
+            shoppingCart.ProductQuantityUpdate(product.ProductName, 2);
 
             //Act
             var actual = product.ProductQuantity;
@@ -76,7 +76,7 @@ namespace SupemarketProject.Tests
             var shoppingCart = new ShoppingCart("Loyal");
             var product = new Product1(5);
             shoppingCart.AddProduct(product);
-            shoppingCart.IncreaseProductQuantity(product.ProductName, -3);
+            shoppingCart.ProductQuantityUpdate(product.ProductName, -3);
 
             //Act
             var actual = product.ProductQuantity;
@@ -92,7 +92,7 @@ namespace SupemarketProject.Tests
             var shoppingCart = new ShoppingCart("Loyal");
             var product = new Product1(2);
             shoppingCart.AddProduct(product);
-            shoppingCart.IncreaseProductQuantity(product.ProductName, -2);
+            shoppingCart.ProductQuantityUpdate(product.ProductName, -2);
 
             //Act
 
@@ -108,13 +108,66 @@ namespace SupemarketProject.Tests
             var shoppingCart = new ShoppingCart("Loyal");
             var product = new Product1(2);
             shoppingCart.AddProduct(product);
-            shoppingCart.IncreaseProductQuantity(product.ProductName, -5);
+            shoppingCart.ProductQuantityUpdate(product.ProductName, -5);
 
             //Act
 
             //Assert
             Assert.AreEqual(0, product.ProductQuantity);
             Assert.AreEqual(0, shoppingCart.Products.Count);
+        }
+
+        [TestMethod]
+        public void ProductsQuantity_AddingTheSameProductTwice_Expected_ProductQuantityShouldIncrease_Test()
+        {
+            //Arrange
+            var shoppingCart = new ShoppingCart("Loyal");
+            var product = new Product1(3);
+
+            var expectedQuantity = 6;
+            var expectedProductLine = 1;
+            //Act
+            shoppingCart.AddProduct(product);
+            shoppingCart.AddProduct(product);
+
+            //Assert
+            Assert.AreEqual(expectedQuantity, product.ProductQuantity);
+            Assert.AreEqual(expectedProductLine, shoppingCart.Products.Count);
+        }
+
+        [TestMethod]
+        public void ProductsQuantity_AddingVariousProductsInAnyOrder_Expected_ProductQuantityShouldIncrease_Test()
+        {
+            // Arrange
+            var shoppingCart = new ShoppingCart("Loyal");
+            var product1 = new Product1(3);
+            var product2 = new Product2();
+            var product3 = new Product3(4);
+
+            var expectedQuantityP1 = 12;
+            var expectedQuantityP2 = 4;
+            var expectedQuantityP3 = 16;
+
+            var expectedProductLine = 3;
+
+            // Act
+            shoppingCart.AddProduct(product1);
+            shoppingCart.AddProduct(product2);
+            shoppingCart.AddProduct(product3);
+            shoppingCart.AddProduct(product2);
+            shoppingCart.AddProduct(product1);
+            shoppingCart.AddProduct(product3);
+            shoppingCart.AddProduct(product1);
+            shoppingCart.AddProduct(product2);
+            shoppingCart.AddProduct(product3);
+
+            // Assert for product quantity
+            Assert.AreEqual(expectedQuantityP1, product1.ProductQuantity);
+            Assert.AreEqual(expectedQuantityP2, product2.ProductQuantity);
+            Assert.AreEqual(expectedQuantityP3, product3.ProductQuantity);
+
+            // Assert for product line
+            Assert.AreEqual(expectedProductLine, shoppingCart.Products.Count);
         }
     }
 }
