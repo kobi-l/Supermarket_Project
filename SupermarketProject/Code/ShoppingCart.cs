@@ -28,9 +28,17 @@ namespace SupermarketProject
                 return;
             }
 
-            // Ternary Operator:
+            // Ternary Operator - "Boolean Expression ? First Statement : Second Statement"
+
             existingProduct.ProductPrice = existingProduct.ProductPrice < product.ProductPrice
-                ? existingProduct.ProductPrice : product.ProductPrice;
+            ? existingProduct.ProductPrice : product.ProductPrice;
+
+            // Same thing but using an IF statement:
+
+            //if (existingProduct.ProductPrice < product.ProductPrice)
+            //    existingProduct.ProductPrice = existingProduct.ProductPrice;
+            //else
+            //    existingProduct.ProductPrice = product.ProductPrice;
 
             ProductQuantityUpdate(product.ProductName, product.GetQuantity());
         }
