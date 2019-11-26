@@ -23,10 +23,16 @@ namespace SupermarketProject
         public void AddProduct(IProduct product)
         {
             if (!Products.TryGetValue(product.ProductName, out IProduct existingProduct))
+            {
                 Products.Add(product.ProductName, product);
+                return;
+            }
 
-            else if (Products.TryGetValue(product.ProductName, out IProduct invoiceProduct))
-                ProductQuantityUpdate(product.ProductName, product.ProductQuantity);
+            // Ternary Operator:
+            existingProduct.ProductPrice = existingProduct.ProductPrice < product.ProductPrice
+                ? existingProduct.ProductPrice : product.ProductPrice;
+
+            ProductQuantityUpdate(product.ProductName, product.GetQuantity());
         }
 
         public void RemoveProduct(string productName) => Products.Remove(productName);
@@ -34,15 +40,15 @@ namespace SupermarketProject
 
         public void RemoveAllProducts() => Products.Clear();
 
-        public void ProductQuantityUpdate(string productName, int quantity = 1)
+        public void ProductQuantityUpdate(string productName, double quantity = 1)
         {
             if (Products.TryGetValue(productName, out IProduct existingProduct))
             {
-                existingProduct.ProductQuantity += quantity;
+                existingProduct.QuantityUpdate(quantity); //<-- a method to update Quantity/Pounds
 
-                if (existingProduct.ProductQuantity <= 0)
+                if (existingProduct.GetQuantity() <= 0)
                 {
-                    existingProduct.ProductQuantity = 0;
+                    //existingProduct.GetQuantity() = 0;
                     RemoveProduct(productName);
                 }
             }

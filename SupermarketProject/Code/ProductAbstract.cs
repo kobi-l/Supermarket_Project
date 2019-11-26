@@ -16,9 +16,13 @@ namespace SupermarketProject
         public virtual decimal GetProductTax() => .1M;
 
         // Expression-Bodied way:
-        public decimal GetProductTotalPrice() => ProductQuantity * ProductPrice;
+        public virtual decimal GetProductTotalPrice() => ProductQuantity * ProductPrice;
 
         // Expression-Bodied way:
-        public virtual string GenerateItemLine() => $"{ProductName,-15}{ProductQuantity,5}{ProductPrice,7:C}";
+        public virtual string GenerateItemLine() => $"{ProductName,-10}{ProductQuantity,11}{ProductPrice,14:C}";
+
+        public virtual void QuantityUpdate(double newQuantity) => ProductQuantity += (int)(newQuantity);
+
+        public virtual double GetQuantity() => ProductQuantity;
     }
 }

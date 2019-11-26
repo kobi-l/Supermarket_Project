@@ -53,8 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\FruitAndVeggies.cs" />
     <Compile Include="Code\GenerateReceipt.cs" />
     <Compile Include="Code\IProduct.cs" />
+    <Compile Include="Code\KidsToys.cs" />
     <Compile Include="Code\Product1.cs" />
     <Compile Include="Code\Product2.cs" />
     <Compile Include="Code\Product3.cs" />

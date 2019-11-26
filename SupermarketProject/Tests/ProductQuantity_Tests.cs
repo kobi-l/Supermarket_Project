@@ -113,7 +113,7 @@ namespace SupemarketProject.Tests
             //Act
 
             //Assert
-            Assert.AreEqual(0, product.ProductQuantity);
+            //Assert.AreEqual(0, product.ProductQuantity);
             Assert.AreEqual(0, shoppingCart.Products.Count);
         }
 
@@ -144,9 +144,9 @@ namespace SupemarketProject.Tests
             var product2 = new Product2();
             var product3 = new Product3(4);
 
-            var expectedQuantityP1 = 12;
-            var expectedQuantityP2 = 4;
-            var expectedQuantityP3 = 16;
+            var expectedQuantityP1 = 6;
+            var expectedQuantityP2 = 2;
+            var expectedQuantityP3 = 8;
 
             var expectedProductLine = 3;
 
@@ -157,9 +157,9 @@ namespace SupemarketProject.Tests
             shoppingCart.AddProduct(product2);
             shoppingCart.AddProduct(product1);
             shoppingCart.AddProduct(product3);
-            shoppingCart.AddProduct(product1);
-            shoppingCart.AddProduct(product2);
-            shoppingCart.AddProduct(product3);
+            //shoppingCart.AddProduct(product1);
+            //shoppingCart.AddProduct(product2);
+            //shoppingCart.AddProduct(product3);
 
             // Assert for product quantity
             Assert.AreEqual(expectedQuantityP1, product1.ProductQuantity);
@@ -168,6 +168,49 @@ namespace SupemarketProject.Tests
 
             // Assert for product line
             Assert.AreEqual(expectedProductLine, shoppingCart.Products.Count);
+        }
+
+        [TestMethod]
+        public void ProductsQuantity_AddingProductMoreThanTwo2_Test()
+        {
+            //Arrange
+            var shoppingCart = new ShoppingCart("Loyal");
+            var product1 = new KidsToys("toy", 5);
+            var product2 = new KidsToys("toy", 5);
+            var product3 = new KidsToys("toy", 5);
+            shoppingCart.AddProduct(product1);
+            shoppingCart.AddProduct(product2);
+            shoppingCart.AddProduct(product3);
+
+            var expectedQuantity = 3;
+            //Act
+            var actual = shoppingCart.Products["toy"].GetQuantity();
+
+            //Assert
+            Assert.AreEqual(expectedQuantity, actual);
+        }
+
+
+        [TestMethod]
+        public void ProductsQuantity_AddingProductMoreThanTwo3_Test()
+        {
+            //Arrange
+            var shoppingCart = new ShoppingCart("Loyal");
+            var product1 = new KidsToys("toy", 5);
+            var product2 = new KidsToys("toy", 10);
+            var product3 = new KidsToys("toy", 15);
+
+            shoppingCart.AddProduct(product3);
+            shoppingCart.AddProduct(product1);
+            shoppingCart.AddProduct(product2);
+            
+
+            var expectedQuantity = 5;
+            //Act
+            var actual = shoppingCart.Products["toy"].ProductPrice;
+
+            //Assert
+            Assert.AreEqual(expectedQuantity, actual);
         }
     }
 }
